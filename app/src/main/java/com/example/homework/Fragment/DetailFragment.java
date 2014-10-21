@@ -11,7 +11,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,8 +50,8 @@ public class DetailFragment extends Fragment {
     SharedPreferences getID;
     SharedPreferences getBtnCaseId;
 
-    DataBase dbHelper, dataBaseHelper;
-    SQLiteDatabase db, database;
+    DataBase dbHelper;
+    SQLiteDatabase db;
     ContentValues cv;
     Cursor cursor1, cursor2;
 
@@ -87,22 +86,21 @@ public class DetailFragment extends Fragment {
         getBtnCaseId = getActivity().getPreferences(Context.MODE_PRIVATE);
         btnCaseId = getBtnCaseId.getInt(Constants.GET_BUTTON_ID, 0);
 
-        Log.d("caseId", btnCaseId + "");
 
         dbHelper = new DataBase(getActivity());
         db = dbHelper.getWritableDatabase();
         cursor1 = db.query(Constants.TABLE_CASE, null, null, null, null, null, null);
 
         if (cursor1.moveToFirst()) {
-
+            cursor1.close();
         } else {
             for (int i = 1; i < 10; i++) {
 
                 testAsyncTask = new TestAsyncTask();
                 testAsyncTask.execute("http://expert-system.internal.shinyshark.com/cases/" + i);
                 try {
-                    Boolean b = testAsyncTask.get();
-                    Log.d("case", "case");
+                    testAsyncTask.get();
+                    cursor2.close();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {
@@ -111,10 +109,6 @@ public class DetailFragment extends Fragment {
             }
 
         }
-
-        cursor1.close();
-
-        Log.d("yes", temp + "");
 
         return view;
     }

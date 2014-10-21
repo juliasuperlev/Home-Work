@@ -15,7 +15,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.widget.FrameLayout;
 import android.widget.Toast;
@@ -114,7 +113,7 @@ public class MainActivity extends Activity {
         cursor = db.query(Constants.TABLE_SCENARIOS, null, null, null, null, null, null);
 
 
-            if (isOnline() == true) {
+            if (isOnline()) {
 
                 if (cursor.moveToFirst()) {
                     cursor.close();
@@ -127,7 +126,7 @@ public class MainActivity extends Activity {
                     scenariosAsyncTask.execute("http://expert-system.internal.shinyshark.com/scenarios");
 
                     try {
-                        Boolean b = scenariosAsyncTask.get();
+                        scenariosAsyncTask.get();
 
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -140,7 +139,7 @@ public class MainActivity extends Activity {
                 }
             } else {
 
-                Toast toast = Toast.makeText(MainActivity.this, "Internet", Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(MainActivity.this, "Disable Internet connection", Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.CENTER, 0, 0);
                 toast.show();
             }
@@ -153,7 +152,7 @@ public class MainActivity extends Activity {
         broadcastReceiverForFirstScenario = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                Log.d("yui", "yui");
+
                 fragmentTransactionForDetails.replace(R.id.container, detailFragment);
                 fragmentTransactionForDetails.commit();
                 rowsNumber = intent.getIntExtra("first", 0);
@@ -162,14 +161,14 @@ public class MainActivity extends Activity {
                 SharedPreferences.Editor editor = rowsID.edit();
                 editor.putInt(Constants.GET_ID, rowsNumber);
                 editor.commit();
-                Log.d("yes", "yes");
+
             }
         };
 
         broadcastReceiverForSecondScenario = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                Log.d("yui", "yui");
+
                 fragmentTransactionForDetails.replace(R.id.container, detailFragment);
                 fragmentTransactionForDetails.commit();
 
@@ -179,7 +178,7 @@ public class MainActivity extends Activity {
                 SharedPreferences.Editor editor = rowsID.edit();
                 editor.putInt(Constants.GET_ID, rowsNumber);
                 editor.commit();
-                Log.d("yes", "yes");
+
             }
         };
 
@@ -187,7 +186,7 @@ public class MainActivity extends Activity {
             @Override
             public void onReceive(Context context, Intent intent) {
 
-                Log.d("button1", "start");
+
                 btnCaseId = intent.getIntExtra("firstBtn", 0);
 
                 switch (btnCaseId) {
@@ -216,7 +215,7 @@ public class MainActivity extends Activity {
                 SharedPreferences.Editor editor = buttonCaseID.edit();
                 editor.putInt(Constants.GET_BUTTON_ID, btnCaseId);
                 editor.commit();
-                Log.d("button1", "button1");
+
             }
         };
 
@@ -230,7 +229,7 @@ public class MainActivity extends Activity {
                 SharedPreferences.Editor editor = buttonCaseID.edit();
                 editor.putInt(Constants.GET_BUTTON_ID, btnCaseId);
                 editor.commit();
-                Log.d("button2", "button2");
+
             }
         };
 
@@ -267,13 +266,13 @@ public class MainActivity extends Activity {
 
             if (ni.getTypeName().equalsIgnoreCase("WIFI"))
                 if (ni.isConnected()) {
-                    Log.d(this.toString(), "test: wifi connection found");
+
                     return true;
                 }
 
             if (ni.getTypeName().equalsIgnoreCase("MOBILE"))
                 if (ni.isConnected()) {
-                    Log.d(this.toString(), "test: mobile connection found");
+
                     return true;
                 }
         }
@@ -308,7 +307,7 @@ public class MainActivity extends Activity {
                         temp.put("caseId", scenarioInfo.getString("caseId"));
 
                         scenariosList.add(temp);
-                        Log.d("Yes", "Yes");
+
                     }
                     cv = new ContentValues();
 

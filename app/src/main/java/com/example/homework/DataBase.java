@@ -3,7 +3,6 @@ package com.example.homework;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 public class DataBase extends SQLiteOpenHelper {
 
@@ -32,7 +31,6 @@ public class DataBase extends SQLiteOpenHelper {
                     Constants.COLUMN_SECOND_ANSWER_CASE_ID + " INTEGER);");
 
 
-        Log.d("db", "db, yes");
 
     }
 
