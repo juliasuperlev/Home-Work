@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/zero_dp"
+                android:layout_weight="1"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/zero_dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tv_question"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/textView_margin_top"
+                    android:layout_marginBottom="@dimen/textView_margin_bottom"
+                    android:textStyle="italic"
+                    android:textColor="@color/text"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_below="@id/tv_question">
+
+                    <Button
+                        android:id="@+id/btn_yes"
+                        android:layout_width="@dimen/zero_dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/button_yes"
+                        android:textColor="@color/text"
+                        android:background="@color/button"
+                        android:layout_marginRight="@dimen/button_margin_right"
+                        android:textStyle="italic"/>
+
+                    <Button
+                        android:id="@+id/btn_no"
+                        android:layout_width="@dimen/zero_dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/button_no"
+                        android:textColor="@color/text"
+                        android:background="@color/button"
+                        android:textStyle="italic"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>

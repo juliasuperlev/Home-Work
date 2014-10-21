@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <fragment
+        android:name="com.example.homework.Fragment.ListFragment"
+        android:id="@+id/list_fragment"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+
+        tools:layout="@layout/list_fragment" />
+
+    <FrameLayout
+        android:id="@+id/details_container"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"></FrameLayout>
+
+
+
+</LinearLayout>
